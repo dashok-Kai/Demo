@@ -2,7 +2,7 @@ name: Build & Deploy WebApp
 
 env: 
   ARTIFACT_NAME: csye6225-webapp-${{ github.sha }}.zip
-  CODEDEPLOY_APPLICATION_NAME: csye6225-webapp
+  CODEDEPLOY_APPLICATION_NAME: csye6225_fall2021
   CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: fall2021-dg
   AWS_REGION: us-east-1
   
