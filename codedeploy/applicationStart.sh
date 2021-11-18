@@ -7,8 +7,6 @@
 
 #sudo systemctl start webapp
 
-cd webapp/
-
 sudo java -jar spring-security-jpa-0.0.1-SNAPSHOT.jar
 
 
