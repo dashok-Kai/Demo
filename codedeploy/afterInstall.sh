@@ -1,4 +1,4 @@
-#sudo systemctl stop tomcat9
+sudo systemctl stop tomcat9
 
 #sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/home/ubuntu/webapp/cloudwatch-agent.json -s
 #sudo systemctl restart amazon-cloudwatch-agent
