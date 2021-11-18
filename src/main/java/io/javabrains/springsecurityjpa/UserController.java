@@ -223,27 +223,23 @@ public class UserController {
     }
 
     @PostMapping("/v1/user/self/pic")
-    public ResponseEntity addUpdatePic(Authentication authentication, HttpServletRequest request, @RequestParam(value = "profilePic") MultipartFile multipartFile) {
+    public ResponseEntity addUpdatePic(Authentication authentication, @RequestBody byte[] binaryFile) {
         statsd.incrementCounter("AddUserPicAPI");
         long start = System.currentTimeMillis();
         try {
-            HttpServletRequest httpServletRequest = request;
-            byte[] processedFile = IOUtils.toByteArray(request.getInputStream());
-            File newFile = new File("abc");
-//        httpServletRequest.getAttributeNames();
-        //Path path = request.getPart();
-       // path.getFileName();
-        //convert byte[] and then to file and then to s3 bucket
-        //FileUtils.writeByteArrayToFile(new File("pathname"), myByteArray)
-        String fileUrl = "";
-        String fileName = multipartFile.getOriginalFilename();
+            String fileUrl = "";
+            String fileName = generateFileName();
+            File file = new File(fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(binaryFile);
+            fos.close();
         Timestamp updateDate = new Timestamp(System.currentTimeMillis());
 
         User user = userRepository.findByUserName(authentication.getName())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + authentication.getName()));
         UserPic picData = imageRepository.getUserData(user.getId().toString());
         imageRepository.flush();
-            File file = convertMultiPartToFile(multipartFile);
+            //File file = convertMultiPartToFile(multipartFile);
             String fileNameWithDate = new Date().getTime() + "-" + fileName.replace(" ", "_");
 //            fileUrl = bucketURL+"/"+bucket+"/"+fileNameWithDate;
             String userID = user.getId().toString();
@@ -293,6 +289,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
         }
+
+
+    private String generateFileName() {
+        return new Date().getTime() + "-image.jpeg";
+    }
 
         @GetMapping("/v1/user/self/pic")
         public ResponseEntity getPic(Authentication authentication){
