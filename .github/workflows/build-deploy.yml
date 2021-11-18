@@ -2,7 +2,7 @@ name: Build & Deploy WebApp
 
 env: 
   ARTIFACT_NAME: csye6225-webapp-${{ github.sha }}.zip
-  CODEDEPLOY_APPLICATION_NAME: csye6225_fall2021
+  CODEDEPLOY_APPLICATION_NAME: csye6225-webapp
   CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: fall2021-dg
   AWS_REGION: us-east-1
   
@@ -36,7 +36,7 @@ jobs:
       - name: Build Deployment Artifact
         run: |
           mkdir codedeploy_artifact
-          zip -r ${{ env.ARTIFACT_NAME }} ./target/spring-security-jpa-0.0.1-SNAPSHOT.jar codedeploy/*.sh appspec.yml
+          zip -r ${{ env.ARTIFACT_NAME }} ./target/spring-security-jpa-0.0.1-SNAPSHOT.jar codedeploy/*.sh appspec.yml webapp.service cloudwatch-agent.json
           pwd
           ls -al
           mv ${{ env.ARTIFACT_NAME }} codedeploy_artifact/

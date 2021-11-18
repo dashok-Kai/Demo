@@ -1,0 +1,16 @@
+[Unit]
+Description=Webapp for CSYE 6225
+After=syslog.target
+After=network.target[Service]
+User=username
+Type=simple
+
+[Service]
+ExecStart=sudo /usr/bin/java -jar /home/ubuntu/webapp/spring-security-jpa-0.0.1-SNAPSHOT.jar SuccessExitStatus=143
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=webapp
+
+[Install]
+WantedBy=multi-user.target
