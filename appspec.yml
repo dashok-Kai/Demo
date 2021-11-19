@@ -4,8 +4,6 @@ os: linux
 files:
   - source: /target/spring-security-jpa-0.0.1-SNAPSHOT.jar
     destination: /home/ubuntu/webapp
-  - source: /target/spring-security-jpa-0.0.1-SNAPSHOT.jar
-    destination: /home/ubuntu
   - source: webapp.service
     destination: /home/ubuntu/webapp
   - source: cloudwatch-agent.json
