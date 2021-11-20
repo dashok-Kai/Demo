@@ -1,7 +1,7 @@
 const http = require('http')
 const options = {
-    hostname: 'prod.dwarak.me',
-    port: 80,
+    hostname: 'dev.dwarak.me',
+    port: 8080,
     path: '/v1/user/self',
     method: 'GET'
 }
