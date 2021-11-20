@@ -16,7 +16,7 @@ public class StatsDConfig {
     @Value("localhost")
     private String metricHost;
 
-    @Value("8125")
+    @Value("8080")
     private int portNumber;
 
     @Value("csye6225")
