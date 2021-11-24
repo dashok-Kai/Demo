@@ -35,6 +35,9 @@ public class User {
         this.lastName = lastName;
     }
 
+    public User(){
+
+    }
 //    @Column(name = "version_num")
 //    @Version
 //    private int version;
