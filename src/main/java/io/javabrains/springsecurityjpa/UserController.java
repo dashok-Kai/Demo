@@ -55,7 +55,7 @@ public class UserController {
 //        return ("<h1>Welcome</h1>");
 //    }
 
-    @GetMapping("/v2/user/self")
+    @GetMapping("/v1/user/self")
     public ResponseEntity<User> user(Authentication authentication) {
         User user = userRepository.findByUserName(authentication.getName())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + authentication.getName()));
@@ -63,7 +63,7 @@ public class UserController {
     }
 
     // build update user REST API
-    @PutMapping("/v2/user/self")
+    @PutMapping("/v1/user/self")
     public ResponseEntity<User> updateUser(Authentication authentication, @RequestBody User userDetails) {
         try {
             if (userDetails.getUserName() != null && !userDetails.getUserName().isEmpty()) {
@@ -122,7 +122,7 @@ public class UserController {
 //    }
 
 
-    @PostMapping("/v2/user")
+    @PostMapping("/v1/user")
     public ResponseEntity<User> registerUser(@RequestBody User newUser) {
         try {
             System.out.println("PosT=======Entered=============================");
@@ -178,7 +178,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/v2/user/self/pic")
+    @PostMapping("/v1/user/self/pic")
     public ResponseEntity addUpdatePic(Authentication authentication, @RequestBody byte[] binaryFile) {
         try {
                 String fileUrl = "";
@@ -226,7 +226,7 @@ public class UserController {
             return new Date().getTime() + "-image.jpeg";
         }
 
-        @GetMapping("/v2/user/self/pic")
+        @GetMapping("/v1/user/self/pic")
             public ResponseEntity getPic(Authentication authentication){
             try{
                 User user = userRepository.findByUserName(authentication.getName())
@@ -242,7 +242,7 @@ public class UserController {
             }
     }
 
-    @DeleteMapping("/v2/user/self/pic")
+    @DeleteMapping("/v1/user/self/pic")
             public ResponseEntity deletePic(Authentication authentication){
                 User user = userRepository.findByUserName(authentication.getName())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + authentication.getName()));
